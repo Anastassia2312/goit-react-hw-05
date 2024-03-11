@@ -44,3 +44,31 @@ export const getMoviesById = async (movieId) => {
   });
   return response.data.results;
 };
+
+export const getMovieCast = async (movieId) => {
+  const response = await axios.get(`/movie/${movieId}/credits`, {
+    params: {
+      language: "en",
+      api_key: "d12fdb6de6294de2522a94ea693f302d",
+    },
+    headers: {
+      Authorization:
+        "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMTJmZGI2ZGU2Mjk0ZGUyNTIyYTk0ZWE2OTNmMzAyZCIsInN1YiI6IjY1ZWMzM2FhOTQ0YTU3MDE2NGJlNmMzNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Lu-QU6jwYaUZnU3BHNbu8C665m_Hb84pqaZk_knFEpk",
+    },
+  });
+  return response.data.results;
+};
+
+export const getMovieReviews = async (movieId) => {
+  const response = await axios.get(`/movie/${movieId}/reviews`, {
+    params: {
+      language: "en",
+      api_key: "d12fdb6de6294de2522a94ea693f302d",
+    },
+    headers: {
+      Authorization:
+        "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMTJmZGI2ZGU2Mjk0ZGUyNTIyYTk0ZWE2OTNmMzAyZCIsInN1YiI6IjY1ZWMzM2FhOTQ0YTU3MDE2NGJlNmMzNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Lu-QU6jwYaUZnU3BHNbu8C665m_Hb84pqaZk_knFEpk",
+    },
+  });
+  return response.data.results;
+};
