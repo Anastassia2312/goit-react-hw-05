@@ -42,7 +42,7 @@ export const getMoviesById = async (movieId) => {
         "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMTJmZGI2ZGU2Mjk0ZGUyNTIyYTk0ZWE2OTNmMzAyZCIsInN1YiI6IjY1ZWMzM2FhOTQ0YTU3MDE2NGJlNmMzNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Lu-QU6jwYaUZnU3BHNbu8C665m_Hb84pqaZk_knFEpk",
     },
   });
-  return response.data.results;
+  return response.data;
 };
 
 export const getMovieCast = async (movieId) => {

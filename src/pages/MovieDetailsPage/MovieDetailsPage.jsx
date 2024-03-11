@@ -7,7 +7,7 @@ import MovieDetails from "../../components/MovieDetails/MovieDetails";
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
-  const [movie, setMovie] = useState([]);
+  const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
