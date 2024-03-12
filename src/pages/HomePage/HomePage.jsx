@@ -1,6 +1,7 @@
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage.jsx";
 import Loader from "../../components/Loader/Loader.jsx";
 import MoviesList from "../../components/MoviesList/MoviesList.jsx";
+import css from "./HomePage.module.css";
 import { getTrendingMovies } from "../../movies-api.js";
 import { useEffect, useState } from "react";
 
@@ -24,7 +25,7 @@ export default function HomePage() {
     fetchTrendingMovies();
   }, []);
   return (
-    <div>
+    <div className={css.homePage}>
       {loading && <Loader />}
       {error && <ErrorMessage />}
       {movies.length > 0 && <MoviesList movies={movies} />}

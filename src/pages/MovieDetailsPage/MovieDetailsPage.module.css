@@ -1,0 +1,28 @@
+.movieDetailsPage {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.info {
+  margin-top: 12px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #880808;
+}
+
+.list {
+  list-style-type: none;
+  display: flex;
+  gap: 16px;
+}
+
+.link {
+  text-decoration: none;
+  color: gray;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.isActive {
+  color: #ff5f1f;
+}

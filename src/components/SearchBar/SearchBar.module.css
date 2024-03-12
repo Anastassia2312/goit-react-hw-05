@@ -1,0 +1,26 @@
+.input {
+  border: 1px solid #ff5f15;
+  background-color: #fcf5e5;
+  padding: 12px;
+  border-radius: 12px;
+  color: #ff5f1f;
+}
+
+.input:hover {
+  border-width: 2px;
+}
+
+.button {
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 20px;
+  background-color: #880808;
+  color: #ffd700;
+  border: none;
+}
+.form {
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
