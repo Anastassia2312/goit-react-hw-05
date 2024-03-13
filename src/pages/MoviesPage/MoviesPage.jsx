@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { getSearchingMovies } from "../../movies-api";
 import css from "./MoviesPage.module.css";
 import SearchBar from "../../components/SearchBar/SearchBar";
@@ -11,22 +11,34 @@ export default function MoviePage() {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(false);
   const [loader, setLoader] = useState(false);
+  const [query, setQuery] = useState("");
 
   const [params] = useSearchParams();
   const searchMovie = params.get("query") ?? "";
 
-  const handleMovieSearch = async (topic) => {
-    try {
-      setMovies([]);
-      setError(false);
-      setLoader(true);
-      const searchMovies = await getSearchingMovies(topic);
-      setMovies(searchMovies);
-    } catch (error) {
-      setError(true);
-    } finally {
-      setLoader(false);
+  useEffect(() => {
+    if (query === "") {
+      return;
     }
+    const handleMovieSearch = async () => {
+      try {
+        setMovies([]);
+        setError(false);
+        setLoader(true);
+        const searchMovies = await getSearchingMovies(query);
+        setMovies(searchMovies);
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoader(false);
+      }
+    };
+    handleMovieSearch();
+  }, [query]);
+
+  const getMovies = (searchQuery) => {
+    setQuery(searchQuery);
+    setMovies([]);
   };
 
   const filteredMovies = useMemo(() => {
@@ -39,7 +51,7 @@ export default function MoviePage() {
     <div className={css.moviesPage}>
       {loader && <Loader />}
       {error && <ErrorMessage />}
-      <SearchBar onSearch={handleMovieSearch} />
+      <SearchBar onSearch={getMovies} />
       {movies.length > 0 && <MoviesList movies={filteredMovies} />}
     </div>
   );
