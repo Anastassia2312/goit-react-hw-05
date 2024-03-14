@@ -11,21 +11,18 @@ export default function MoviePage() {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(false);
   const [loader, setLoader] = useState(false);
-  const [query, setQuery] = useState("");
 
   const [params] = useSearchParams();
-  const searchMovie = params.get("query") ?? "";
+  const searchMovieFilter = params.get("query") ?? "";
 
   useEffect(() => {
-    if (query === "") {
+    if (searchMovieFilter === "") {
       return;
     }
     const handleMovieSearch = async () => {
       try {
-        setMovies([]);
-        setError(false);
         setLoader(true);
-        const searchMovies = await getSearchingMovies(query);
+        const searchMovies = await getSearchingMovies(searchMovieFilter);
         setMovies(searchMovies);
       } catch (error) {
         setError(true);
@@ -34,24 +31,19 @@ export default function MoviePage() {
       }
     };
     handleMovieSearch();
-  }, [query]);
-
-  const getMovies = (searchQuery) => {
-    setQuery(searchQuery);
-    setMovies([]);
-  };
+  }, [searchMovieFilter]);
 
   const filteredMovies = useMemo(() => {
     return movies.filter((movie) =>
-      movie.title.toLowerCase().includes(searchMovie.toLowerCase())
+      movie.title.toLowerCase().includes(searchMovieFilter.toLowerCase())
     );
-  }, [movies, searchMovie]);
+  }, [movies, searchMovieFilter]);
 
   return (
     <div className={css.moviesPage}>
       {loader && <Loader />}
       {error && <ErrorMessage />}
-      <SearchBar onSearch={getMovies} />
+      <SearchBar />
       {movies.length > 0 && <MoviesList movies={filteredMovies} />}
     </div>
   );

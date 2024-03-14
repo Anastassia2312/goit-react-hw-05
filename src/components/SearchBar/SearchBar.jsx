@@ -2,9 +2,8 @@ import { Field, Form, Formik } from "formik";
 import { useSearchParams } from "react-router-dom";
 import css from "./SearchBar.module.css";
 
-export default function SearchBar({ onSearch }) {
+export default function SearchBar() {
   const [params, setParams] = useSearchParams();
-  const value = params.get("query") ?? "";
 
   const changeFilter = (newFilter) => {
     params.set("query", newFilter);
@@ -12,9 +11,8 @@ export default function SearchBar({ onSearch }) {
   };
   return (
     <Formik
-      initialValues={{ topic: value }}
+      initialValues={{ topic: "" }}
       onSubmit={(values, actions) => {
-        onSearch(values.topic);
         changeFilter(values.topic);
         actions.resetForm();
       }}
