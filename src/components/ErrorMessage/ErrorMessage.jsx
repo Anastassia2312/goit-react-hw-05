@@ -1,3 +1,4 @@
+import css from "./ErrorMessage.module.css";
 export default function ErrorMessage() {
-  return <p>ERROR! PLEASE, RELOAD THE PAGE...</p>;
+  return <h2 className={css.error}>ERROR! PLEASE, RELOAD THE PAGE...</h2>;
 }
